@@ -1,0 +1,30 @@
+{
+  "name": "hyperclick-latex",
+  "main": "./lib/hyperclick-latex",
+  "version": "0.0.0",
+  "description": "Hyperclick support for LaTeX",
+  "keywords": [
+    "latex",
+    "hyperclick"
+  ],
+  "bugs": {
+    "url": "https://github.com/Aerijo/hyperclick-latex/issues"
+  },
+  "author": "Aerijo",
+  "repository": "https://github.com/Aerijo/hyperclick-latex",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "activationHooks": [
+    "language-latex:grammar-used",
+    "language-latex2e:grammar-used"
+  ],
+  "providedServices": {
+    "hyperclick": {
+      "versions": {
+        "0.1.0": "getHyperclickProvider"
+      }
+    }
+  }
+}
