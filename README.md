@@ -6,7 +6,7 @@ Hyperclick support for LaTeX in [Atom](https://atom.io/)
 
 This package adds [`hyperclick`](https://atom.io/packages/hyperclick) support for LaTeX documents.
 
-- **Note** Only just saw the existing package  [`latex-hyperclick`](https://atom.io/packages/latex-hyperclick) shortly after publishing this one. It looks like it does a similar thing with file paths and (eventually) for references, but I think the documentation access by this package is unique.
+- **Note**: Only just saw the existing package [`latex-hyperclick`](https://atom.io/packages/latex-hyperclick) shortly after publishing this one. It looks like it does a similar thing with file paths and (eventually) for references, but I think the documentation access by this package is unique.
 
 ## Requirements
 
@@ -16,5 +16,6 @@ This package adds [`hyperclick`](https://atom.io/packages/hyperclick) support fo
 
 - [X] Click package name to open documentation (provided by [`texdoc`](https://www.tug.org/texdoc/))
 - [X] Click paths inside of `\input{...}` and `\include{...}` to open the file
+- [X] Click environment delimiters to go to the corresponding `begin`/`end` statement.
 - [ ] Click `ref`'s to go to corresponding `label`s
 - [ ] Click citations to go to corresponding citation in `.bib` file
