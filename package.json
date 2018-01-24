@@ -26,5 +26,8 @@
         "0.1.0": "getHyperclickProvider"
       }
     }
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
