@@ -1,3 +1,4 @@
+[See this on atom.io](https://atom.io/packages/hyperclick-latex)
 # hyperclick-latex
 
 Hyperclick support for LaTeX in [Atom](https://atom.io/)
@@ -6,7 +7,7 @@ Hyperclick support for LaTeX in [Atom](https://atom.io/)
 
 This package adds [`hyperclick`](https://atom.io/packages/hyperclick) support for LaTeX documents.
 
-- **Note**: Only just saw the existing package [`latex-hyperclick`](https://atom.io/packages/latex-hyperclick) shortly after publishing this one. It looks like it does a similar thing with file paths and (eventually) for references, but I think the documentation access by this package is unique.
+- **Note**: Only just saw the existing package [`latex-hyperclick`](https://atom.io/packages/latex-hyperclick) shortly after publishing this one. It looks like it does a similar thing with file paths and references, but I think the documentation access and environment delimiter jumping by this package is unique.
 
 ## Requirements
 
