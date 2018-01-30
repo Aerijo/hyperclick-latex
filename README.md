@@ -18,5 +18,8 @@ This package adds [`hyperclick`](https://atom.io/packages/hyperclick) support fo
 - [X] Click package name to open documentation (provided by [`texdoc`](https://www.tug.org/texdoc/))
 - [X] Click paths inside of `\input{...}` and `\include{...}` to open the file
 - [X] Click environment delimiters to go to the corresponding `begin`/`end` statement.
-- [X] Click `ref`'s to go to corresponding `label`
+- [X] Click `ref`'s to go to corresponding `label`*
 - [ ] Click citations to go to corresponding citation in `.bib` file
+
+
+\* Specifically, it will go to the first occurence of the label on the current file or, failing that, will search all files from the root document and on for the first occurence, following `\input` and `\include` statements.
