@@ -27,7 +27,19 @@
       }
     }
   },
+  "consumedServices": {
+    "busy-signal": {
+      "versions": {
+        "1.0.0": "consumeSignal"
+      }
+    }
+  },
   "dependencies": {
-    "lodash": "^4.17.4"
-  }
+    "lodash": "^4.17.4",
+    "atom-package-deps": "^4.6.0"
+  },
+  "package-deps": [
+    "hyperclick",
+    "busy-signal"
+  ]
 }
