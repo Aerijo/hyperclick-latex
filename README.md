@@ -18,6 +18,7 @@ This package adds [`hyperclick`](https://atom.io/packages/hyperclick) support fo
 
 ## Planned
 - Click citations to go to corresponding citation in `.bib` file
+- Ignore commented things / match comments within comments.
 
 
 ## Requirements
