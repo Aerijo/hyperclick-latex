@@ -1,16 +1,16 @@
+% !TEX bib = ./myBib.bib
 \documentclass{article}
 
 \usepackage{graphicx}
+\usepackage{biblatex}
 
 \begin{document}
 
 \section{S1}
 \subsubsection{{SS3}}
-\input{c}
+\input{../resources/c.tex}
 
-
-
-% \include{ ,, waw ad  ,,, ../c.tex, goodbye, world,}
+\inputminted{python}{mypy.py}
 
 
 % \input{./hello b.tex}
@@ -24,8 +24,10 @@ Content
   \label{}
 \end{figure}
 
+% Is it being spell checked because grammar hasn't loaded yet?
 
+\ref{trial}
 
-
+\cites[][]{world}
 
 \end{document}
