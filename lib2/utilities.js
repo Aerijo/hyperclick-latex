@@ -5,7 +5,7 @@ const child_process = require("child_process");
 const { Range } = require("atom");
 const { escapeRegExp } = require("lodash");
 
-module.exports = { openClickedFile, selectMatchingEnvDelims };
+module.exports = { openFileTextEditor, selectMatchingEnvDelims };
 
 function promToOpenFile(filePath, { currentDir="/", parentCommand="" }) {
   return new Promise((resolve, reject) => {
@@ -14,16 +14,19 @@ function promToOpenFile(filePath, { currentDir="/", parentCommand="" }) {
     if (fs.existsSync(absFilePath)) {
       return resolve(atom.workspace.open(absFilePath));
     }
-
-    if (path.extname(absFilePath) === "") {
-      if (parentCommand.match("bib")) {
-        absFilePath += ".bib";
-      } else {
-        absFilePath += ".tex";
-      }
+    
+    let allFiles;
+    try {
+      allFiles = fs.readdirSync(path.dirname(absFilePath));
+    } catch(error) {
+      return reject(absFilePath);
     }
 
-    if (fs.existsSync(absFilePath)) {
+    let targetFileData = path.parse(absFilePath);
+    let candidates = allFiles.filter(name => path.parse(name).name === targetFileData.name);
+
+    if (candidates.length > 0) {
+      absFilePath += path.extname(candidates[0]);
       return resolve(atom.workspace.open(absFilePath));
     } else {
       return reject(absFilePath);
@@ -31,27 +34,35 @@ function promToOpenFile(filePath, { currentDir="/", parentCommand="" }) {
   });
 }
 
-function openClickedFile(targetFilePath, options) {
+function openFileTextEditor(targetFilePath, options) {
   return promToOpenFile(targetFilePath, options)
   .then((editor) => { // on success
+    if (typeof editor === "undefined") { return; }
     if (options.jumpToInputCommand === true) {
       let originalFile = path.basename(options.filePath);
-      let commandRegex = new RegExp(`\\\\(?:input|include)\{.*?\\b${originalFile}\\b.*?\}`);
-      editor.scan(commandRegex, ({range}) => {
+      let sanOriginalFile = escapeRegExp(originalFile);
+      let commandRegex = new RegExp(`\\\\(?:input|include)\{.*?\\b${sanOriginalFile}\\b.*?\}`);
+      editor.scan(commandRegex, ({ range, stop }) => {
         editor.setCursorBufferPosition(range.end);
+        stop();
       });
     }
 
     return editor;
 
   }, (newFilePath) => { // on fail; file does not exist
-    let notif = atom.notifications.addWarning(`File does not exist:\n${newFilePath}`, {
-      dismissable: true,
-      buttons: [{
-        text: "Make this file",
-        onDidClick: () => { makeFile(newFilePath, notif, options); }
-      }]
-    });
+    if (!options.makeFile) {
+      atom.notifications.addWarning(`Non-TeX file does not exist:\n${newFilePath}`, { dismissable: true });
+      return;
+    } else {
+      let notif = atom.notifications.addWarning(`File does not exist:\n${newFilePath}`, {
+        dismissable: true,
+        buttons: [{
+          text: "Make this file",
+          onDidClick: () => { makeFile(newFilePath, notif, options); }
+        }]
+      });
+    }
   });
 }
 
@@ -59,6 +70,7 @@ function makeFile(filePath, notif, options) {
   notif.dismiss();
   atom.workspace.open(filePath)
   .then((editor) => {
+    if (typeof editor === "undefined") { return; }
     if (options.setRoot === true) {
       rootPath = options.getRootPath(atom.config.get("hyperclick-latex.setRootFile"), options.editor, filePath);
       editor.setText(`% !TEX root = ${rootPath}\n`);
