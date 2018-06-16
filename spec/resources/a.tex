@@ -1,22 +1,61 @@
-% !TEX bib = ./myBib.bib
 \documentclass{article}
 
-\usepackage{graphicx}
-\usepackage{biblatex}
+\usepackage{graphicx}      % graphicx.sty
+% \usepackage{graphicx{}}  % graphicx{}.sty
+% \usepackage{graphicx {}} % Just dies.
+\usepackage{{graphicx}}    % graphicx.sty
+% \usepackage{g{raphicx}}  % g{raphicx}.sty
+\usepackage{g {raphicx}}   % graphicx.sty
+% \usepackage{g {r {a}{p} h i {cx}}}    % gra{p}hicx.sty
+% \usepackage{g {r {a}{}{p} h i {cx}}}  % gra{}{p}hicx.sty
+% \usepackage{g {r {a} {}{p} h i {cx}}} % gra{p} h i {cx}.sty <- note the spaces
+% \usepackage{g {r {a} {}{}{}{}{p} h i {cx}}} % gra{}{}{}{p} h i {cx}.sty
+
+\usepackage{graphicx, siunitx}     % graphicx.sty, siunitx.sty
+\usepackage{graphicx, {siunitx}}   % graphicx.sty, siunitx.sty
+% \usepackage{graphicx{, siunitx}} % Too many `}` / graphicx{, siunitx}.sty not found
+\usepackage{{graphicx, siunitx}}     % graphicx.sty, siunitx.sty
+% \usepackage{{graphicx, siunitx}{}} % {graphicx, siunitx}{}.sty
+% \usepackage{{graphicx, siunitx} {}}  % ` siuntix .sty` not found <- note spaces
+% \usepackage{{graphicx,siunitx} {}}   % `siuntix .sty` not found
+% \usepackage{{graphicx,siunitx}, {}}  % `graphicx,siunitx.sty`
+% \usepackage{{{graphicx},{siunitx}}, {}}  % `{graphicx},{siunitx}.sty`
+
+\usepackage{graphicx, siunitx, }     % graphicx.sty, siunitx.sty
+% \usepackage{graphicx, siunitx, {}} % `.sty` not found
+\usepackage{graphicx, siunitx, { }}  % graphicx.sty, siunitx.sty
+
+
+
+\usepackage{
+  graphicx,
+  siunitx,
+  hyperref,
+  floatrow
+}
+
+% \usepackage{foo}
+
 
 \begin{document}
 
-\begin{foo} this is the foo environment \end{foo}
-
+% \begin{foo} this is the foo environment \end{foo}
 
 \section{wadwdw}
-  \include{../resources/c}
 
+
+% \section{not this}
+
+\input{c} % trailing space is fine, leading space is file not found.
+
+% Turns out, only includeonly supports comma separated paths. include interprets it as one file too, but just doesn't throw an error.
+
+% At least input throws an error when it doesn't work
 
 
 \begin{figure}[h t p b] % IMPORTANT: please don't delete!
   \centering
-  \includegraphics[width=\textwidth]{fig1.png}
+  \includegraphics[width=\textwidth]{./fig1}
 \caption{}
   \label{}
 \end{figure}
@@ -25,6 +64,5 @@
 
 \ref{trial}
 
-\cites[][]{world}
 
 \end{document}
