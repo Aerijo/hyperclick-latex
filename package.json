@@ -1,7 +1,7 @@
 {
   "name": "hyperclick-latex",
   "main": "./lib/main",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Hyperclick support for LaTeX",
   "keywords": [
     "latex",
