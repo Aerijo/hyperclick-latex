@@ -41,5 +41,13 @@
   "package-deps": [
     "hyperclick",
     "busy-signal"
-  ]
+  ],
+  "configSchema": {
+    "setRootFile": {
+      "description": "When making a new file, set the root path automatically",
+      "enum": ["Calling file", "Project root", "None"],
+      "default": "Project root",
+      "type": "string"
+    }
+  }
 }
