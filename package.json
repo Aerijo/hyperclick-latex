@@ -1,7 +1,7 @@
 {
   "name": "hyperclick-latex",
   "main": "./lib/main",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Hyperclick support for LaTeX",
   "keywords": [
     "latex",
@@ -45,7 +45,11 @@
   "configSchema": {
     "setRootFile": {
       "description": "When making a new file, set the root path automatically",
-      "enum": ["Calling file", "Project root", "None"],
+      "enum": [
+        "Calling file",
+        "Project root",
+        "None"
+      ],
       "default": "Project root",
       "type": "string"
     }
